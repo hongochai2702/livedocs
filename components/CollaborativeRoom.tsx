@@ -8,9 +8,12 @@ import Loader from "./Loader";
 import Header from "./Header";
 import ActiveCollaborators from "./ActiveCollaborators";
 
-const CollaborativeRoom: React.FC = () => {
+const CollaborativeRoom = ({
+	roomId,
+	roomMetadata,
+}: CollaborativeRoomProps) => {
 	return (
-		<RoomProvider id={"my-room"}>
+		<RoomProvider id={roomId}>
 			<ClientSideSuspense fallback={<Loader />}>
 				<div className="collaborative-room">
 					<Header>
