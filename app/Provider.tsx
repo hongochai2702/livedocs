@@ -17,7 +17,9 @@ const Provider: React.FC<ProviderProps> = ({ children }) => {
 		<LiveblocksProvider
 			authEndpoint={process.env.NEXT_PUBLIC_LIVEBLOCKS_AUTH_ENDPOINT as string}
 			resolveUsers={async ({ userIds }) => {
-				return await getClerkUsers({ userIds });
+				const users = await getClerkUsers({ userIds });
+
+				return users;
 			}}
 		>
 			<ClientSideSuspense fallback={<Loader />}>{children}</ClientSideSuspense>

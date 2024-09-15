@@ -44,6 +44,8 @@ export const getDocument = async ({
 }) => {
 	try {
 		const room = await liveblocks.getRoom(roomId);
+		console.log("userId", userId);
+
 		//TODO: Bring this back after implementing access control
 		// const hasAccessRoom = Object.keys(room.usersAccesses).includes(userId);
 
@@ -70,5 +72,14 @@ export const updateDocument = async (roomId: string, title: string) => {
 		return parseStringify(updatedRoom);
 	} catch (error) {
 		console.error(`Error happened while updating a room: ${error}`);
+	}
+};
+
+export const getDocuments = async (email: string) => {
+	try {
+		const rooms = await liveblocks.getRooms({ userId: email });
+		return parseStringify(rooms);
+	} catch (error) {
+		console.error(`Error happened while fetching rooms: ${error}`);
 	}
 };
